@@ -125,7 +125,7 @@ public class OperacionBanaria {
     }
     
     public void appendDescripcion(String descripcion){
-        this.descripcion = this.descripcion + descripcion;
+        this.descripcion = this.descripcion + "\n" + descripcion;
     }
 /*
     public double getSaldoPostOperacion() {

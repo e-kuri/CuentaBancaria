@@ -64,6 +64,8 @@ public class FileParser {
                         break;
                     case "88":
                         break;
+                    default:
+                        throw new FormatoInvalidoException();
                 }
             }
         }catch(IOException e){
