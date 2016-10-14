@@ -46,7 +46,7 @@ public class CuentaBancaria {
         
         if(operacion.getImporte() < 0){
             numRetiros++;
-            cantidadRetirada += operacion.getImporte();
+            cantidadRetirada += operacion.getImporte() * -1;
         }else{
             numDepositos++;
             cantidadDepositada += operacion.getImporte();

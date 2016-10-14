@@ -47,15 +47,19 @@ public class FileParser {
             CuentaBancaria currentAccount = null;
             while((line = reader.readLine()) != null){
                 switch(line.substring(0,2)){
+                    //Registro de cabecera de cuenta
                     case "11":
                         currentAccount = createAccountFromFile(line);
                         break;
+                    //Registro principal de movimientos
                     case "22":
                         currentAccount.aplicarOperacion(createOperacionFromFile(line));
                         break;
+                    //Registro complementario de concepto
                     case "23":
                         currentAccount.getLastOperation().appendDescripcion(getDescripcion(line));
                         break;
+                    //Registro final de cuenta
                     case "33":
                         if(currentAccount != null)
                             cuentas.put(currentAccount.getNoCuenta(), currentAccount);
@@ -64,6 +68,7 @@ public class FileParser {
                         break;
                     case "88":
                         break;
+                    //Si el codigo de registro es diferente, el archivo no tiene el formato adecuado.
                     default:
                         throw new FormatoInvalidoException();
                 }
@@ -120,26 +125,26 @@ public class FileParser {
     private OperacionBanaria createOperacionFromFile(String texto) throws FormatoInvalidoException{
         OperacionBanaria operacion = new OperacionBanaria();
         DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
-        short claveDeberHaber;
+        //short claveDeberHaber;
         int currentIndex = 6;
         try{
             operacion.setClaveOficina(texto.substring(currentIndex, (currentIndex += 4)));
             operacion.setFechaOperacion(dateFormat.parse(texto.substring(currentIndex, (currentIndex += 6))));
             operacion.setFechaValor(dateFormat.parse(texto.substring(currentIndex, (currentIndex += 6))));
             operacion.setUTC(texto.substring(++currentIndex, (currentIndex += 4)));
-            claveDeberHaber = Short.parseShort(texto.substring(currentIndex, ++currentIndex));
+            operacion.setClaveDeberHaber(Short.parseShort(texto.substring(currentIndex, ++currentIndex)));
             
             StringBuilder importeBuilder = new StringBuilder(14);
             importeBuilder.append(texto.substring(currentIndex, (currentIndex += 12)))
                     .append(".").append(texto.substring(currentIndex, (currentIndex += 2)));
             
             operacion.setImporte(Double.parseDouble(importeBuilder.toString()));
-            if(claveDeberHaber == 1){
+            if(operacion.getClaveDeberHaber() == 1){
                 operacion.setImporte(operacion.getImporte() * -1);
             }
             operacion.setNoDocumento(texto.substring(currentIndex, (currentIndex += 10)).trim());
             operacion.setReferencua(texto.substring(currentIndex, currentIndex+=30));
-        }catch(IndexOutOfBoundsException | ParseException e){
+        }catch(IndexOutOfBoundsException | ParseException | ClaveInvalidaException e){
             throw new FormatoInvalidoException(e.getMessage());
         }
         

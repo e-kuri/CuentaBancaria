@@ -34,12 +34,12 @@ public class Main {
     
     public static void main(String[] args) {
         FileParser fp = new FileParser("/Users/ekur0001/Downloads/InformacionBancaria.txt");
-        Map map = null;
+        ReportGenerator generator = new ReportGenerator("/Users/ekur0001/Desktop/cuentas");
         try{
-            map = fp.parseBankAcounts();
+            Map map = fp.parseBankAcounts();
+            generator.createAllReports(map);
         }catch(CuentaBancariaException e){
             System.out.println(e.getMessage());
         }
-        printMovements(map);
     }
 }
