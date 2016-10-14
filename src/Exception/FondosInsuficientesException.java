@@ -6,7 +6,7 @@
 package Exception;
 
 /**
- *
+ * Excepcion que se arroja si no existen fondos suficientes al realizar un retiro
  * @author Dinorah Pacheco Reyes
  */
 public class FondosInsuficientesException extends CuentaBancariaException{

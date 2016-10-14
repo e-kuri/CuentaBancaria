@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Genera los reportes para las cuentas.
  * @author Dinorah Pacheco Reyes
  */
 public class ReportGenerator {
@@ -27,6 +27,10 @@ public class ReportGenerator {
         file  = Paths.get(path);
     }
     
+    /**
+     * Genera el reporte de todas las cuentas
+     * @param cuentas Mapa que contiene las cuentas sobre las que se creara el reporte.
+     */
     public void createGeneralReport(Map<String, CuentaBancaria> cuentas){
         StringBuilder text = new StringBuilder(100);
         for(Map.Entry entry : cuentas.entrySet()){
@@ -52,6 +56,10 @@ public class ReportGenerator {
         System.out.println(text);
     }
     
+    /**
+     * Crea el reporte para una sola cuenta, con la informacion de las operaciones realizadas.
+     * @param cuenta Cuenta bancaria sobre la que se creara el reporte.
+     */
     public void createAccountReport(CuentaBancaria cuenta){
         StringBuilder text = new StringBuilder(100);
         List<OperacionBanaria> depositos;
@@ -93,7 +101,7 @@ public class ReportGenerator {
             }
             
             text.append("Numero de retiros: " + cuenta.getNumRetiros());
-            text.append("Monto retirado: " + cuenta.getCantidadRetirada());
+            text.append("\nMonto retirado: " + cuenta.getCantidadRetirada());
             
         Charset charset = Charset.forName("US-ASCII");
         try(BufferedWriter writer = Files.newBufferedWriter(file.resolve(Paths.get("reporte_movimientos_"+cuenta.getNoCuenta()+".txt")), charset)){
@@ -104,6 +112,10 @@ public class ReportGenerator {
         System.out.println(text);
     }
     
+    /**
+     * Crea los reportes para todas las cuentas recibidas en el mapa como parametro.
+     * @param cuentas Mapa contenedor de las cuentas sobre las que se crearan los reportes.
+     */
     public void createAllReports(Map<String, CuentaBancaria> cuentas){
         createGeneralReport(cuentas);
         for(Map.Entry entry : cuentas.entrySet()){

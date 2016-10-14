@@ -6,7 +6,7 @@
 package Exception;
 
 /**
- *
+ * Excepcion que se arroja si el archivo de entrada no tiene el formato adecuado.
  * @author Dinorah Pacheco Reyes
  */
 public class FormatoInvalidoException extends CuentaBancariaException{

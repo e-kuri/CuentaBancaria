@@ -8,10 +8,11 @@ package cuentabancaria;
 import Exception.ClaveInvalidaException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * Informacion de la cuenta bancaria
  * @author Dinorah Pacheco Reyes
  */
 public class CuentaBancaria {
@@ -21,9 +22,10 @@ public class CuentaBancaria {
      */
     
     public CuentaBancaria(){
-        this.operaciones = new ArrayList<>();
+        this.operaciones = new LinkedList<>();
     }
     
+    //lista de operaciones que se han aplicado a la cuenta en el dia
     private List<OperacionBanaria> operaciones;
     
     private String claveBanco, claveOficina, noCuenta;
@@ -38,9 +40,13 @@ public class CuentaBancaria {
     private int numRetiros;
     private double cantidadRetirada;
 
+    /**
+     * Retira el monto o incrementa el saldo, dependiendo del tipo de operacion.
+     * Una vez aplicada la operacion, se guarda en la lista de operaciones de la cuenta.
+     * @param operacion 
+     */
     public void aplicarOperacion(OperacionBanaria operacion){
         this.saldo = this.saldo + operacion.getImporte();
-        //operacion.setSaldoPostOperacion(this.saldo);
         operacion.setCuenta(this);
         this.operaciones.add(operacion);
         
@@ -110,6 +116,11 @@ public class CuentaBancaria {
         return claveDivisa;
     }
 
+    /**
+     * Establece la clave de la divisa. El valor debe ser 484 u 840;
+     * @param claveDivisa Clave de la divisa de la cuenta
+     * @throws ClaveInvalidaException Si la clave no es 484 u 840
+     */
     public void setClaveDivisa(short claveDivisa) throws ClaveInvalidaException {
         if(claveDivisa != 484 && claveDivisa != 840)
             throw new ClaveInvalidaException("La clave divisa debe ser 484 o 840");
