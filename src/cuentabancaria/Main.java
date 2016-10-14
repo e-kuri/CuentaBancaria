@@ -19,12 +19,16 @@ public class Main {
         for(Map.Entry entry : cuentas.entrySet()){
             System.out.println("\n\n");
             CuentaBancaria cuenta = (CuentaBancaria)entry.getValue();
-            System.out.println("Cuenta : " + entry.getKey());
+            System.out.println("Numero de cuenta : " + entry.getKey());
+            System.out.println("Cuenta habiente: " + cuenta.getNombreTitular());
             System.out.println("Saldo inicial: " + cuenta.getSaldoInicial());
-            for(OperacionBanaria op : cuenta.getOperaciones()){
-                System.out.print("importe: " + op.getImporte());
-                System.out.println(" | saldo nuevo: " + op.getSaldoPostOperacion());
-            }
+            System.out.println("Saldo final: " + cuenta.getSaldo());
+            System.out.println("Clave del banco: " + cuenta.getClaveBanco());
+            System.out.println("Clave de sucursal: " + cuenta.getClaveOficina());
+            System.out.println("Numero de depositos: " + cuenta.getNumDepositos());
+            System.out.println("Monto depositado: "+ cuenta.getCantidadDepositada());
+            System.out.println("Numero de retiros: " + cuenta.getNumRetiros());
+            System.out.println("Monto retirado: " + cuenta.getCantidadRetirada());
         }
     }
     

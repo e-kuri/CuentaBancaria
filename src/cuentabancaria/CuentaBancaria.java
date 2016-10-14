@@ -33,12 +33,25 @@ public class CuentaBancaria {
     private String nombreTitular;
     private final short modalidadDeInformacion = 3;
     private double saldoInicial;
+    private int numDepositos;
+    private double cantidadDepositada;
+    private int numRetiros;
+    private double cantidadRetirada;
 
     public void aplicarOperacion(OperacionBanaria operacion){
         this.saldo = this.saldo + operacion.getImporte();
-        operacion.setSaldoPostOperacion(this.saldo);
+        //operacion.setSaldoPostOperacion(this.saldo);
         operacion.setCuenta(this);
         this.operaciones.add(operacion);
+        
+        if(operacion.getImporte() < 0){
+            numRetiros++;
+            cantidadRetirada += operacion.getImporte();
+        }else{
+            numDepositos++;
+            cantidadDepositada += operacion.getImporte();
+        }
+            
     }
     
     public OperacionBanaria getLastOperation(){
@@ -125,7 +138,23 @@ public class CuentaBancaria {
     
     public void setSaldoInicial(double saldoInicial){
         this.saldoInicial = saldoInicial;
-        this.saldo = saldo;
+        this.saldo = saldoInicial;
+    }
+
+    public int getNumDepositos() {
+        return numDepositos;
+    }
+
+    public double getCantidadDepositada() {
+        return cantidadDepositada;
+    }
+
+    public int getNumRetiros() {
+        return numRetiros;
+    }
+
+    public double getCantidadRetirada() {
+        return cantidadRetirada;
     }
     
 }

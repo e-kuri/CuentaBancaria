@@ -27,7 +27,7 @@ public class OperacionBanaria {
     private int noMovimiento;
     private CuentaBancaria cuenta;
     private String descripcion;
-    private double saldoPostOperacion;
+    //private double saldoPostOperacion;
 
     
     public OperacionBanaria(){
@@ -127,7 +127,7 @@ public class OperacionBanaria {
     public void appendDescripcion(String descripcion){
         this.descripcion = this.descripcion + descripcion;
     }
-
+/*
     public double getSaldoPostOperacion() {
         return saldoPostOperacion;
     }
@@ -135,7 +135,7 @@ public class OperacionBanaria {
     public void setSaldoPostOperacion(double saldoPostOperacion) {
         this.saldoPostOperacion = saldoPostOperacion;
     }
-    
+*/    
     
     
 }
