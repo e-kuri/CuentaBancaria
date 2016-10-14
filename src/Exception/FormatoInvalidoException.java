@@ -9,14 +9,16 @@ package Exception;
  *
  * @author Dinorah Pacheco Reyes
  */
-public class FondosInsuficientesException extends CuentaBancariaException{
+public class FormatoInvalidoException extends CuentaBancariaException{
 
-    public FondosInsuficientesException() {
-        super("Fondos insuficientes!");
+    public FormatoInvalidoException() {
+        super("Archivo con formato invalido");
     }
 
-    public FondosInsuficientesException(String message) {
+    public FormatoInvalidoException(String message) {
         super(message);
     }
+ 
+    
     
 }

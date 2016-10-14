@@ -5,13 +5,14 @@
  */
 package cuentabancaria;
 
+import Exception.ClaveInvalidaException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author ekur0001
+ * @author Dinorah Pacheco Reyes
  */
 public class CuentaBancaria {
 
@@ -27,13 +28,21 @@ public class CuentaBancaria {
     
     private String claveBanco, claveOficina, noCuenta;
     private Date fechaInicial, fechaFinal;
-    private short claveDeberHaber;
     private double saldo;
     private short claveDivisa;
     private String nombreTitular;
+    private final short modalidadDeInformacion = 3;
+    private double saldoInicial;
 
     public void aplicarOperacion(OperacionBanaria operacion){
+        this.saldo = this.saldo + operacion.getImporte();
+        operacion.setSaldoPostOperacion(this.saldo);
+        operacion.setCuenta(this);
         this.operaciones.add(operacion);
+    }
+    
+    public OperacionBanaria getLastOperation(){
+        return operaciones.get(operaciones.size() - 1);
     }
     
     public String getClaveBanco() {
@@ -75,15 +84,7 @@ public class CuentaBancaria {
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-
-    public short getClaveDeberHaber() {
-        return claveDeberHaber;
-    }
-
-    public void setClaveDeberHaber(short claveDeberHaber) {
-        this.claveDeberHaber = claveDeberHaber;
-    }
-
+    
     public double getSaldo() {
         return saldo;
     }
@@ -96,9 +97,9 @@ public class CuentaBancaria {
         return claveDivisa;
     }
 
-    public void setClaveDivisa(short claveDivisa) {
-        if(claveDivisa != 484 || claveDivisa != 840)
-            return;
+    public void setClaveDivisa(short claveDivisa) throws ClaveInvalidaException {
+        if(claveDivisa != 484 && claveDivisa != 840)
+            throw new ClaveInvalidaException("La clave divisa debe ser 484 o 840");
         this.claveDivisa = claveDivisa;
     }
 
@@ -109,7 +110,22 @@ public class CuentaBancaria {
     public void setNombreTitular(String nombreTitular) {
         this.nombreTitular = nombreTitular;
     }
+
+    public List<OperacionBanaria> getOperaciones() {
+        return operaciones;
+    }
+
+    public short getModalidadDeInformacion() {
+        return modalidadDeInformacion;
+    }
     
+    public double getSaldoInicial(){
+        return this.saldoInicial;
+    }
     
+    public void setSaldoInicial(double saldoInicial){
+        this.saldoInicial = saldoInicial;
+        this.saldo = saldo;
+    }
     
 }

@@ -11,43 +11,34 @@ import java.util.Date;
 
 /**
  *
- * @author ekur0001
+ * @author Dinorah Pacheco Reyes
  */
 public class OperacionBanaria {
     
     
-    private final int CODIGO_REGISTRO = 22;
-    private int claveOficina;
+    private String claveOficina;
     private Date fechaOperacion;
-    private int conceptopropio;
+    private Date fechaValor;
+    private String UTC;
     private short claveDeberHaber;
     private double importe;
-    private int noDocumento;
+    private String noDocumento;
     private String referencua;
     private int noMovimiento;
     private CuentaBancaria cuenta;
+    private String descripcion;
+    private double saldoPostOperacion;
 
-    /*
-    public OperacionBanaria(int claveOficina, Date fechaOperacion, int conceptoPropio, short claveDeberHaber, double importe, int noDocumento, String referencua, int noMovimiento, CuentaBancaria cuenta) throws ClaveInvalidaException {
-        this.claveOficina = claveOficina;
-        this.fechaOperacion = fechaOperacion;
-        this.conceptopropio = conceptoPropio;
-        this.importe = importe;
-        this.noDocumento = noDocumento;
-        this.referencua = referencua;
-        this.noMovimiento = noMovimiento;
-        this.cuenta = cuenta;
-        setClaveDeberHaber(claveDeberHaber);
-    }
-*/
     
-    public OperacionBanaria(){};
-
-    public int getClaveOficina() {
+    public OperacionBanaria(){
+        descripcion = "";
+    };
+    
+    public String getClaveOficina() {
         return claveOficina;
     }
 
-    public void setClaveOficina(int claveOficina) {
+    public void setClaveOficina(String claveOficina) {
         this.claveOficina = claveOficina;
     }
 
@@ -57,14 +48,6 @@ public class OperacionBanaria {
 
     public void setFechaOperacion(Date fechaOperacion) {
         this.fechaOperacion = fechaOperacion;
-    }
-
-    public int getConceptoPropio() {
-        return conceptopropio;
-    }
-
-    public void setConceptoPropio(int conceptoPropio) {
-        this.conceptopropio = conceptoPropio;
     }
 
     public short getClaveDeberHaber() {
@@ -85,11 +68,11 @@ public class OperacionBanaria {
         this.importe = importe;
     }
 
-    public int getNoDocumento() {
+    public String getNoDocumento() {
         return noDocumento;
     }
 
-    public void setNoDocumento(int noDocumento) {
+    public void setNoDocumento(String noDocumento) {
         this.noDocumento = noDocumento;
     }
 
@@ -116,6 +99,43 @@ public class OperacionBanaria {
     public void setCuenta(CuentaBancaria cuenta) {
         this.cuenta = cuenta;
     }
+
+    public Date getFechaValor() {
+        return fechaValor;
+    }
+
+    public void setFechaValor(Date fechaValor) {
+        this.fechaValor = fechaValor;
+    }
+
+    public String getUTC() {
+        return UTC;
+    }
+
+    public void setUTC(String conceptopropio) {
+        this.UTC = conceptopropio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    public void appendDescripcion(String descripcion){
+        this.descripcion = this.descripcion + descripcion;
+    }
+
+    public double getSaldoPostOperacion() {
+        return saldoPostOperacion;
+    }
+
+    public void setSaldoPostOperacion(double saldoPostOperacion) {
+        this.saldoPostOperacion = saldoPostOperacion;
+    }
+    
     
     
 }

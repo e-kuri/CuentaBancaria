@@ -7,9 +7,9 @@ package Exception;
 
 /**
  *
- * @author ekur0001
+ * @author Dinorah Pacheco Reyes
  */
-public class ClaveInvalidaException extends Exception{
+public class ClaveInvalidaException extends CuentaBancariaException{
 
     public ClaveInvalidaException() {
         super("Clave invalida. La clave deber-haber debe ser 0 o 1.");
@@ -17,16 +17,6 @@ public class ClaveInvalidaException extends Exception{
 
     public ClaveInvalidaException(String message) {
         super(message);
-    }
-
-    public ClaveInvalidaException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ClaveInvalidaException(Throwable cause) {
-        super(cause);
-    }
-    
-    
+    }    
     
 }

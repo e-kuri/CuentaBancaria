@@ -9,13 +9,12 @@ package Exception;
  *
  * @author Dinorah Pacheco Reyes
  */
-public class FondosInsuficientesException extends CuentaBancariaException{
+public abstract class CuentaBancariaException extends Exception{
 
-    public FondosInsuficientesException() {
-        super("Fondos insuficientes!");
+    public CuentaBancariaException() {
     }
 
-    public FondosInsuficientesException(String message) {
+    public CuentaBancariaException(String message) {
         super(message);
     }
     
