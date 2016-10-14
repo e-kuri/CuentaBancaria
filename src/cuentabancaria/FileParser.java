@@ -6,6 +6,7 @@
 package cuentabancaria;
 
 import Exception.ClaveInvalidaException;
+import Exception.CuentaBancariaException;
 import Exception.FormatoInvalidoException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -110,7 +111,7 @@ public class FileParser {
             cuenta.setClaveDivisa(Short.parseShort(cabeceraCuenta.substring(currentIndex, (currentIndex += 3))));
             cuenta.setNombreTitular(cabeceraCuenta.substring(++currentIndex, (currentIndex += 26)));
             
-        }catch(IndexOutOfBoundsException | ParseException | ClaveInvalidaException e){
+        }catch(IndexOutOfBoundsException | ParseException | CuentaBancariaException e){
             throw new FormatoInvalidoException(e.getMessage());
         }
         return cuenta;
@@ -144,7 +145,7 @@ public class FileParser {
             }
             operacion.setNoDocumento(texto.substring(currentIndex, (currentIndex += 10)).trim());
             operacion.setReferencua(texto.substring(currentIndex, currentIndex+=30));
-        }catch(IndexOutOfBoundsException | ParseException | ClaveInvalidaException e){
+        }catch(IndexOutOfBoundsException | ParseException | CuentaBancariaException e){
             throw new FormatoInvalidoException(e.getMessage());
         }
         
